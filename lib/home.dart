@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'home.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
-class OnboardingSuccess extends StatelessWidget {
+class HomePage extends StatelessWidget {
+  // file io functions
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/user_type.txt');
+  }
+
+  Future<String> readFromDevice() async {
+    try {
+      final file = await _localFile;
+      // Read the file.
+      String contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return 'error';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +55,12 @@ class OnboardingSuccess extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
-                          Icons.verified_user,
+                          Icons.content_paste,
                           color: Colors.green,
                           size: 100,
                           semanticLabel: 'Text to announce in accessibility modes',
                         ),
-                        Text('Success!')
+                        Text('Ready to take attendance?')
                       ],
                     ),
                   ),
@@ -44,13 +68,9 @@ class OnboardingSuccess extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 20),
                   child: CupertinoButton(
-                      child: Text('Next', style: TextStyle(color: Colors.white)),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomePage()),
-                        );
+                      child: Text('Start', style: TextStyle(color: Colors.white)),
+                      onPressed: () async {
+                        print(await readFromDevice());
                       },
                       color: Colors.green),
                 ),
