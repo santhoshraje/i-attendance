@@ -32,7 +32,8 @@ dependencies:
   flutter_beacon: ^0.3.0
   cloud_firestore: ^0.13.7
   path_provider: ^1.6.11
-
+  flutter_blue: ^0.7.2
+  mailer: ^3.0.4
 
 
 dev_dependencies:
