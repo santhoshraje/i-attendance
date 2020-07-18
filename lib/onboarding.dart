@@ -52,16 +52,19 @@ class Onboarding extends StatelessWidget {
                     },
                     color: Colors.green),
               ),
-              CupertinoButton(
-                  child: Text('I am a student', style: TextStyle(color: Colors.white)),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => StudentOnboarding()),
-                    );
-                  },
-                  color: Colors.green),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: CupertinoButton(
+                    child: Text('I am a student', style: TextStyle(color: Colors.white)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => StudentOnboarding()),
+                      );
+                    },
+                    color: Colors.green),
+              ),
             ],
           ),
         ),
