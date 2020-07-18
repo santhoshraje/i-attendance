@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:iattendance/student_view_classes.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+
+import 'lecturer_set_class.dart';
 
 class HomePage extends StatelessWidget {
   // file io functions
@@ -30,21 +33,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
+    return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
 
-            iconTheme: IconThemeData(
-              color: Colors.black, //change your color here
-            ),
-            title: Text(
-              'iAttendance',
-              style: TextStyle(color: Colors.black),
-            ),
-            backgroundColor: Colors.white,
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
           ),
-          body: Center(
+          title: Text(
+            'iAttendance',
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Colors.white,
+        ),
+        body: SafeArea(
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
@@ -70,13 +73,30 @@ class HomePage extends StatelessWidget {
                   child: CupertinoButton(
                       child: Text('Start', style: TextStyle(color: Colors.white)),
                       onPressed: () async {
-                        print(await readFromDevice());
+                        var s = await readFromDevice();
+                        if(s == 'student'){
+                          // show student page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewClasses()),
+                          );
+
+                        }
+                        else{
+                          // show lecturer page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SetClass()),
+                          );
+                        }
                       },
                       color: Colors.green),
                 ),
               ],
             ),
-          )),
-    );
+          ),
+        ));
   }
 }
