@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:iattendance/attendance_success.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class ViewClasses extends StatefulWidget {
   @override
@@ -21,6 +23,34 @@ class _ViewClassesState extends State<ViewClasses> {
   bool bluetoothEnabled = false;
   final List<Map<String, String>> classes = [];
   var added = [];
+  var documentID = '';
+
+  // file io functions
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    return File('$path/user_name.txt');
+  }
+
+  Future<String> readFromDevice() async {
+    try {
+      final file = await _localFile;
+      // Read the file.
+      String contents = await file.readAsString();
+
+      return contents;
+    } catch (e) {
+      // If encountering an error, return 0.
+      return 'error';
+    }
+  }
+
+
+
 
   @override
   void initState() {
@@ -113,6 +143,7 @@ class _ViewClassesState extends State<ViewClasses> {
               }
               for (var i = 0; i < qs.documents.length; i++) {
                 if (qs.documents[i].data['id'] == minor) {
+                  documentID = qs.documents[i].documentID;
                   if (added.contains(minor)) continue;
                   classes.add({"Name": qs.documents[i].data['class']});
                   added.add(minor);
@@ -135,7 +166,6 @@ class _ViewClassesState extends State<ViewClasses> {
     }
   }
 
-  @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     print('AppLifecycleState = $state');
     if (state == AppLifecycleState.resumed) {
@@ -230,6 +260,9 @@ class _ViewClassesState extends State<ViewClasses> {
                                                 new FlatButton(
                                                   child: new Text("Confirm"),
                                                   onPressed: () async {
+                                                    CollectionReference classes = Firestore.instance.collection('beacons');
+                                                    final document = classes.document(documentID);
+                                                    document.updateData({await readFromDevice(): await readFromDevice()});
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
