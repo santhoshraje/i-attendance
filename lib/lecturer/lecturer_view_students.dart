@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:iattendance/lecturer_send_attendance.dart';
+import 'package:iattendance/lecturer/lecturer_send_attendance.dart';
 
 class ViewStudents extends StatelessWidget {
   @override
