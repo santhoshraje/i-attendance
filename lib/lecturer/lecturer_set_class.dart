@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'lecturer_view_students.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue/flutter_blue.dart'; // check for bluetooth on
 
 class SetClass extends StatelessWidget {
   final myController = TextEditingController();
@@ -78,56 +79,48 @@ class SetClass extends StatelessWidget {
                       child:
                           Text('Next', style: TextStyle(color: Colors.white)),
                       onPressed: () async {
-//                        // check if bluetooth enabled
-//                        if (await flutterBlue.isOn) {
-//                          // start broadcast
-//                          beaconBroadcast
-//                              .setUUID(
-//                                  'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0') //change UUID to yours
-//                              .setMajorId(1) //change major id to yours
-//                              .setMinorId(_id) //change minor id to yours
-//                              .setLayout(
-//                                  'm:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24')
-//                              .setManufacturerId(0x004c)
-//                              .start();
+                        // check if bluetooth enabled
+                        if (await flutterBlue.isOn) {
+                          // start broadcast
+                          beaconBroadcast
+                              .setUUID(
+                                  'E2C56DB5-DFFB-48D2-B060-D0F5A71096E0') //change UUID to yours
+                              .setMajorId(1) //change major id to yours
+                              .setMinorId(_id) //change minor id to yours
+                              .setLayout(
+                                  'm:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24')
+                              .setManufacturerId(0x004c)
+                              .start();
 //                          // change page
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => ViewStudents()),
                           );
-//
-//                          // store class name and beacon id
-//                          Firestore.instance.collection('beacons').document()
-//                              .setData({ 'id': _id, 'class': myController.text });
-//
-////                          Firestore.instance
-////                              .collection('beacons')
-////                              .where("class", isEqualTo: "hi")
-////                              .snapshots()
-////                              .listen((data) =>
-////                              data.documents.forEach((doc) => print(doc["id"])));
-//
-//                        } else {
-//                          showDialog(
-//                            context: context,
-//                            builder: (BuildContext context) {
-//                              // return object of type Dialog
-//                              return CupertinoAlertDialog(
-//                                title: new Text("Please turn on bluetooth"),
-//                                actions: <Widget>[
-//                                  // usually buttons at the bottom of the dialog
-//                                  new FlatButton(
-//                                    child: new Text("Close"),
-//                                    onPressed: () {
-//                                      Navigator.of(context).pop();
-//                                    },
-//                                  ),
-//                                ],
-//                              );
-//                            },
-//                          );
-//                        }
+
+                          // store class name and beacon id
+                          Firestore.instance.collection('beacons').document()
+                              .setData({ 'id': _id, 'class': myController.text });
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              // return object of type Dialog
+                              return CupertinoAlertDialog(
+                                title: new Text("Please turn on bluetooth"),
+                                actions: <Widget>[
+                                  // usually buttons at the bottom of the dialog
+                                  new FlatButton(
+                                    child: new Text("Close"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       color: Colors.green),
                 ),
