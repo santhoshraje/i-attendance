@@ -1,11 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:iattendance/attendance_success.dart';
 
@@ -23,12 +19,13 @@ class _ViewClassesState extends State<ViewClasses> {
   bool authorizationStatusOk = false;
   bool locationServiceEnabled = false;
   bool bluetoothEnabled = false;
+  final List<Map<String, String>> classes = [];
+  var added = [];
 
   @override
   void initState() {
     super.initState();
-
-//    listeningState();
+    listeningState();
   }
 
   listeningState() async {
@@ -94,15 +91,36 @@ class _ViewClassesState extends State<ViewClasses> {
 
     _streamRanging =
         flutterBeacon.ranging(regions).listen((RangingResult result) {
-      print(result);
+//      print(result);
       if (result != null && mounted) {
         setState(() {
           _regionBeacons[result.region] = result.beacons;
           _beacons.clear();
           _regionBeacons.values.forEach((list) {
             _beacons.addAll(list);
+            // loop thru _beacons
+            _beacons.forEach((value) async {
+              // extract each beacon's minor
+              final minor = value.minor;
+              // get class name from firebase
+              QuerySnapshot qs;
+              try {
+                qs = await Firestore.instance
+                    .collection('beacons')
+                    .getDocuments();
+              } catch (e) {
+                print(e.toString());
+              }
+              for (var i = 0; i < qs.documents.length; i++) {
+                if (qs.documents[i].data['id'] == minor) {
+                  if (added.contains(minor)) continue;
+                  classes.add({"Name": qs.documents[i].data['class']});
+                  added.add(minor);
+                  setState(() {});
+                }
+              }
+            });
           });
-          _beacons.sort(_compareParameters);
         });
       }
     });
@@ -115,20 +133,6 @@ class _ViewClassesState extends State<ViewClasses> {
         _beacons.clear();
       });
     }
-  }
-
-  int _compareParameters(Beacon a, Beacon b) {
-    int compare = a.proximityUUID.compareTo(b.proximityUUID);
-
-    if (compare == 0) {
-      compare = a.major.compareTo(b.major);
-    }
-
-    if (compare == 0) {
-      compare = a.minor.compareTo(b.minor);
-    }
-
-    return compare;
   }
 
   @override
@@ -186,47 +190,67 @@ class _ViewClassesState extends State<ViewClasses> {
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: DataTable(
+                    showCheckboxColumn: false,
                     columns: <DataColumn>[
                       DataColumn(
                         label: Text(
-                          'Name',
+                          'Class Name',
                         ),
                       ),
                     ],
-                    rows: <DataRow>[
-                      DataRow(
-                        cells: <DataCell>[
-                          DataCell(Text('MAT 200')),
-                        ],
-                        onSelectChanged: (bool selected) async {
-                          if (selected) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AttendanceSuccess()),
-                            );
+                    rows:
+                        classes // Loops through dataColumnText, each iteration assigning the value to element
+                            .map(
+                              ((element) => DataRow(
+                                    cells: <DataCell>[
+                                      DataCell(Text(element[
+                                          "Name"])), //Extracting from Map element the value
+                                    ],
+                                    onSelectChanged: (bool selected) async {
+                                      if (selected) {
+                                        String s = element.toString();
+                                        s = s.replaceFirst('}', '');
+                                        s = s.replaceFirst('{Name: ', '');
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            // return object of type Dialog
+                                            return CupertinoAlertDialog(
+                                              title: new Text(
+                                                  "You are about to submit attendance for " +
+                                                      s),
+                                              actions: <Widget>[
+                                                new FlatButton(
+                                                  child: new Text("Cancel"),
+                                                  onPressed: () async {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                ),
+                                                // usually buttons at the bottom of the dialog
+                                                new FlatButton(
+                                                  child: new Text("Confirm"),
+                                                  onPressed: () async {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              AttendanceSuccess()),
+                                                    );
+                                                  },
+                                                ),
 
-                          }
-                        },
-                      ),
-//                      DataRow(
-//                        cells: <DataCell>[
-//                          DataCell(Text('')),
-//                        ],
-//                      ),
-                    ],
+                                              ],
+                                            );
+                                          },
+                                        );
+                                      }
+                                    },
+                                  )),
+                            )
+                            .toList(),
                   ),
                 ),
               ),
-//              Padding(
-//                padding: EdgeInsets.only(bottom: 20),
-//                child: CupertinoButton(
-//                    child: Text('Next', style: TextStyle(color: Colors.white)),
-//                    onPressed: () {
-//
-//                    },
-//                    color: Colors.green),
-//              ),
             ],
           ),
         ));
