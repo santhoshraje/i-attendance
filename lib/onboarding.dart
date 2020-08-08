@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iattendance/lecturer_onboarding.dart';
+import 'package:iattendance/lecturer/lecturer_onboarding.dart';
 import 'package:iattendance/student_onboarding.dart';
 //import 'lecturer_onboarding.dart';
 //import 'student_onboarding.dart';
