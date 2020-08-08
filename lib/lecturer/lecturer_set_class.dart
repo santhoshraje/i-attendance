@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'lecturer_view_students.dart';
@@ -7,27 +9,44 @@ import 'dart:io';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
 import 'package:flutter_blue/flutter_blue.dart'; // check for bluetooth on
 
-class SetClass extends StatelessWidget {
-  final myController = TextEditingController();
-  BeaconBroadcast beaconBroadcast = BeaconBroadcast();
-  FlutterBlue flutterBlue = FlutterBlue.instance;
-  var _id = 10;
+class SetClass extends StatefulWidget {
+  @override
+  _SetClassState createState() => _SetClassState();
+}
 
-  // file io functions
+class _SetClassState extends State<SetClass> {
+  final myController = TextEditingController();
+
+  BeaconBroadcast beaconBroadcast = BeaconBroadcast();
+
+  FlutterBlue flutterBlue = FlutterBlue.instance;
+
+  Random random = Random();
+
+  int _id;
+
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
   }
 
-  Future<File> get _localFile async {
+  Future<File> _localFile(String filePath) async {
     final path = await _localPath;
-    return File('$path/user_type.txt');
+//    return File('$path/user_type.txt');
+    return File('$path/' + filePath);
   }
 
-  Future<File> writeToDevice(String s) async {
-    final file = await _localFile;
+  Future<File> writeToDevice(String s, String filePath) async {
+    final file = await _localFile(filePath);
     // Write the file.
     return file.writeAsString(s);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _id = random.nextInt(100);
+    super.initState();
   }
 
   @override
@@ -81,6 +100,8 @@ class SetClass extends StatelessWidget {
                       onPressed: () async {
                         // check if bluetooth enabled
                         if (await flutterBlue.isOn) {
+                          // save class data
+                          writeToDevice(myController.text, 'class_name.txt');
                           // start broadcast
                           beaconBroadcast
                               .setUUID(
