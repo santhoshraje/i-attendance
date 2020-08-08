@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:iattendance/student_view_classes.dart';
+import 'package:iattendance/student/student_view_classes.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:flutter_beacon/flutter_beacon.dart';
