@@ -13,13 +13,14 @@ class StudentOnboarding extends StatelessWidget {
     return directory.path;
   }
 
-  Future<File> get _localFile async {
+  Future<File> _localFile(String filePath) async {
     final path = await _localPath;
-    return File('$path/user_type.txt');
+//    return File('$path/user_type.txt');
+    return File('$path/' + filePath);
   }
 
-  Future<File> writeToDevice(String s) async {
-    final file = await _localFile;
+  Future<File> writeToDevice(String s, String filePath) async {
+    final file = await _localFile(filePath);
     // Write the file.
     return file.writeAsString(s);
   }
@@ -117,7 +118,8 @@ class StudentOnboarding extends StatelessWidget {
                                     child:  Text("Confirm"),
                                     onPressed: () async{
                                       // write to device
-                                      await writeToDevice('student');
+                                      await writeToDevice('student', 'user_type.txt');
+                                      await writeToDevice(myController.text, 'user_name.txt');
                                       // remove the pop up
                                       Navigator.of(context).pop();
                                       // navigate to the new page
