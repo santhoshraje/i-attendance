@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:iattendance/attendance_success.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SendAttendance extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +48,34 @@ class SendAttendance extends StatelessWidget {
                   child: CupertinoButton(
                       child: Text('Send', style: TextStyle(color: Colors.white)),
                       onPressed: () async{
+                        // send mail here
+                        String username = '';
+                        String password = '';
+                        String recipient = '';
+
+                        final smtpServer = gmail(username, password);
+
+                        final directory = await getApplicationDocumentsDirectory();
+                        final filePath = directory.path + "/attendance.csv";
+                        File file = File(filePath);
+
+                        // Create our message.
+                        final message = Message()
+                          ..from = Address(username, 'iAttendance')
+                          ..recipients.add(recipient)
+                          ..subject = 'Attendance list: ${DateTime.now()}'
+                          ..attachments.add(FileAttachment(file))
+                          ..text = 'Attendance list for class';
+
+                        try {
+                          final sendReport = await send(message, smtpServer);
+                          print('Message sent: ' + sendReport.toString());
+                        } on MailerException catch (e) {
+                          print('Message not sent.');
+                          for (var p in e.problems) {
+                            print('Problem: ${p.code}: ${p.msg}');
+                          }
+                        }
                         Navigator.push(
                           context,
                           MaterialPageRoute(
