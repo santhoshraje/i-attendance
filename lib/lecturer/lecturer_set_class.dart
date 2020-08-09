@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../file_manager.dart';
 import 'lecturer_view_students.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
 import 'package:flutter_blue/flutter_blue.dart'; // check for bluetooth on
 
@@ -16,36 +15,16 @@ class SetClass extends StatefulWidget {
 
 class _SetClassState extends State<SetClass> {
   final myController = TextEditingController();
-
   BeaconBroadcast beaconBroadcast = BeaconBroadcast();
-
   FlutterBlue flutterBlue = FlutterBlue.instance;
-
+  final fileManager = FileManager();
   Random random = Random();
-
   int _id;
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> _localFile(String filePath) async {
-    final path = await _localPath;
-//    return File('$path/user_type.txt');
-    return File('$path/' + filePath);
-  }
-
-  Future<File> writeToDevice(String s, String filePath) async {
-    final file = await _localFile(filePath);
-    // Write the file.
-    return file.writeAsString(s);
-  }
 
   @override
   void initState() {
     // TODO: implement initState
-    _id = random.nextInt(100);
+    _id = random.nextInt(65534);
     super.initState();
   }
 
@@ -101,7 +80,7 @@ class _SetClassState extends State<SetClass> {
                         // check if bluetooth enabled
                         if (await flutterBlue.isOn) {
                           // save class data
-                          writeToDevice(myController.text, 'class_name.txt');
+                          fileManager.writeToDevice(myController.text, 'class_name.txt');
                           // start broadcast
                           beaconBroadcast
                               .setUUID(

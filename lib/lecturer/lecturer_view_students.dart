@@ -5,6 +5,7 @@ import 'package:iattendance/lecturer/lecturer_send_attendance.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:csv/csv.dart';
+import '../file_manager.dart';
 
 class ViewStudents extends StatefulWidget {
   @override
@@ -14,32 +15,11 @@ class ViewStudents extends StatefulWidget {
 class _ViewStudentsState extends State<ViewStudents> {
   final List<Map<String, String>> studentList = [];
   var attendanceList = [];
+  final fileManager = FileManager();
 
-  // file io functions
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> _localFile(String filePath) async {
-    final path = await _localPath;
-    return File('$path/' + filePath);
-  }
-
-  Future<String> readFromDevice(String filePath) async {
-    try {
-      final file = await _localFile(filePath);
-      // Read the file.
-      String contents = await file.readAsString();
-      return contents;
-    } catch (e) {
-      // If encountering an error, return 0.
-      return 'error';
-    }
-  }
 
   void doStuff() async {
-    var className = await readFromDevice('class_name.txt');
+    var className = await fileManager.readFromDevice('class_name.txt');
     // get class name from firebase
     QuerySnapshot qs;
     var documentID = '';

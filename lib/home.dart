@@ -1,37 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:iattendance/student/student_view_classes.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 import 'package:flutter_beacon/flutter_beacon.dart';
+import 'file_manager.dart';
 import 'lecturer/lecturer_set_class.dart';
 
 class HomePage extends StatelessWidget {
   bool authorizationStatusOk = false;
-
-  // file io functions
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/user_type.txt');
-  }
-
-  Future<String> readFromDevice() async {
-    try {
-      final file = await _localFile;
-      // Read the file.
-      String contents = await file.readAsString();
-
-      return contents;
-    } catch (e) {
-      // If encountering an error, return 0.
-      return 'error';
-    }
-  }
+  final fileManager = FileManager();
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +52,7 @@ class HomePage extends StatelessWidget {
                       child:
                           Text('Start', style: TextStyle(color: Colors.white)),
                       onPressed: () async {
-                        var s = await readFromDevice();
+                        var s = await fileManager.readFromDevice('user_type.txt');
                         if (s == 'student') {
                           // check ble scanner permissions
                           final authorizationStatus =

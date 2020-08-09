@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:iattendance/file_manager.dart';
 import '../onboarding_success.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 
 class LecturerOnboarding extends StatelessWidget {
   final myController = TextEditingController();
-
-  // file io functions
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/user_type.txt');
-  }
-
-  Future<File> writeToDevice(String s) async {
-    final file = await _localFile;
-    // Write the file.
-    return file.writeAsString(s);
-  }
-
+  final fileManager = FileManager();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -103,7 +85,7 @@ class LecturerOnboarding extends StatelessWidget {
                               .then((DocumentSnapshot ds) async {
                             if (ds.exists){
                               // write to device
-                              await writeToDevice('lecturer');
+                              await fileManager.writeToDevice('lecturer', 'user_type.txt');
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

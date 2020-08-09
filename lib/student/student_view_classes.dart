@@ -4,8 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:flutter_beacon/flutter_beacon.dart';
 import 'package:iattendance/attendance_success.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
+import '../file_manager.dart';
 
 class ViewClasses extends StatefulWidget {
   @override
@@ -24,33 +23,7 @@ class _ViewClassesState extends State<ViewClasses> {
   final List<Map<String, String>> classes = [];
   var added = [];
   var documentID = '';
-
-  // file io functions
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    return File('$path/user_name.txt');
-  }
-
-  Future<String> readFromDevice() async {
-    try {
-      final file = await _localFile;
-      // Read the file.
-      String contents = await file.readAsString();
-
-      return contents;
-    } catch (e) {
-      // If encountering an error, return 0.
-      return 'error';
-    }
-  }
-
-
-
+  final fileManager = FileManager();
 
   @override
   void initState() {
@@ -59,11 +32,9 @@ class _ViewClassesState extends State<ViewClasses> {
   }
 
   listeningState() async {
-    print('Listening to bluetooth state');
     _streamBluetooth = flutterBeacon
         .bluetoothStateChanged()
         .listen((BluetoothState state) async {
-      print('BluetoothState = $state');
       streamController.add(state);
 
       switch (state) {
@@ -260,9 +231,19 @@ class _ViewClassesState extends State<ViewClasses> {
                                                 new FlatButton(
                                                   child: new Text("Confirm"),
                                                   onPressed: () async {
-                                                    CollectionReference classes = Firestore.instance.collection('beacons');
-                                                    final document = classes.document(documentID);
-                                                    document.updateData({await readFromDevice(): await readFromDevice()});
+                                                    CollectionReference
+                                                        classes = Firestore
+                                                            .instance
+                                                            .collection(
+                                                                'beacons');
+                                                    final document = classes
+                                                        .document(documentID);
+                                                    String name =
+                                                        await fileManager
+                                                            .readFromDevice(
+                                                                'user_name.txt');
+                                                    document.updateData(
+                                                        {name: name});
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -271,7 +252,6 @@ class _ViewClassesState extends State<ViewClasses> {
                                                     );
                                                   },
                                                 ),
-
                                               ],
                                             );
                                           },

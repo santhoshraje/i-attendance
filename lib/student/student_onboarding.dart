@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../file_manager.dart';
 import '../onboarding_success.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,24 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 class StudentOnboarding extends StatelessWidget {
   final myController = TextEditingController();
-
-  // file io functions
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-    return directory.path;
-  }
-
-  Future<File> _localFile(String filePath) async {
-    final path = await _localPath;
-//    return File('$path/user_type.txt');
-    return File('$path/' + filePath);
-  }
-
-  Future<File> writeToDevice(String s, String filePath) async {
-    final file = await _localFile(filePath);
-    // Write the file.
-    return file.writeAsString(s);
-  }
+  final fileManager = FileManager();
 
   @override
   Widget build(BuildContext context) {
@@ -118,8 +102,8 @@ class StudentOnboarding extends StatelessWidget {
                                     child:  Text("Confirm"),
                                     onPressed: () async{
                                       // write to device
-                                      await writeToDevice('student', 'user_type.txt');
-                                      await writeToDevice(myController.text, 'user_name.txt');
+                                      await fileManager.writeToDevice('student', 'user_type.txt');
+                                      await fileManager.writeToDevice(myController.text, 'user_name.txt');
                                       // remove the pop up
                                       Navigator.of(context).pop();
                                       // navigate to the new page
