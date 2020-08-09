@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:iattendance/lecturer/lecturer_send_attendance.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:csv/csv.dart';
 
 class ViewStudents extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class ViewStudents extends StatefulWidget {
 
 class _ViewStudentsState extends State<ViewStudents> {
   final List<Map<String, String>> studentList = [];
+  var attendanceList = [];
 
   // file io functions
   Future<String> get _localPath async {
@@ -127,7 +129,20 @@ class _ViewStudentsState extends State<ViewStudents> {
                 padding: EdgeInsets.only(bottom: 20),
                 child: CupertinoButton(
                     child: Text('Next', style: TextStyle(color: Colors.white)),
-                    onPressed: () {
+                    onPressed: () async {
+                      // store names in file
+                      studentList.forEach((element) {
+                        element.forEach((key, value) {
+                          attendanceList.add(value);
+                        });
+                      });
+                      List<List<dynamic>> rowsAsListOfValues = const CsvToListConverter().convert(attendanceList.toString());
+                      String csv = const ListToCsvConverter().convert(rowsAsListOfValues);
+                      /// Write to a file
+                      final directory = await getApplicationDocumentsDirectory();
+                      final pathOfTheFileToWrite = directory.path + "/attendance.csv";
+                      File file = File(pathOfTheFileToWrite);
+                      file.writeAsString(csv);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
