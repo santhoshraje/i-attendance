@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iattendance/file_manager.dart';
-import 'home.dart';
-import 'onboarding.dart';
+import 'package:iattendance/tools/file_manager.dart';
+import 'package:iattendance/shared_states/home.dart';
+import 'shared_states/onboarding.dart';
 import 'package:flutter/services.dart';
 
 void main() async {

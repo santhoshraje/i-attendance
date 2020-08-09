@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:iattendance/lecturer/lecturer_send_attendance.dart';
+import 'package:iattendance/lecturer_states/lecturer_send_attendance.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:csv/csv.dart';
-import '../file_manager.dart';
+import '../tools/file_manager.dart';
 
 class ViewStudents extends StatefulWidget {
   @override

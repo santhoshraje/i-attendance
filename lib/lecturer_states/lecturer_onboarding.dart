@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iattendance/file_manager.dart';
-import '../onboarding_success.dart';
+import 'package:iattendance/tools/file_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:iattendance/shared_states/onboarding_success.dart';
 
 class LecturerOnboarding extends StatelessWidget {
   final myController = TextEditingController();

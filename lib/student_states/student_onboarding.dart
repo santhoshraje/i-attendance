@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../file_manager.dart';
-import '../onboarding_success.dart';
+import 'package:iattendance/shared_states/onboarding_success.dart';
+import '../tools/file_manager.dart';
 import 'package:flutter/cupertino.dart';
 
 class StudentOnboarding extends StatelessWidget {

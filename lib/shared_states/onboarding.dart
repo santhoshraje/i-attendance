@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iattendance/lecturer/lecturer_onboarding.dart';
-import 'package:iattendance/student/student_onboarding.dart';
+import 'package:iattendance/lecturer_states/lecturer_onboarding.dart';
+import 'package:iattendance/student_states/student_onboarding.dart';
 
 
 class Onboarding extends StatelessWidget {

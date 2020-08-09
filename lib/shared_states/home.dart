@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:iattendance/student/student_view_classes.dart';
+import 'package:iattendance/lecturer_states/lecturer_set_class.dart';
+import 'package:iattendance/student_states/student_view_classes.dart';
 import 'package:flutter_beacon/flutter_beacon.dart';
-import 'file_manager.dart';
-import 'lecturer/lecturer_set_class.dart';
+import '../tools/file_manager.dart';
+
 
 class HomePage extends StatelessWidget {
   bool authorizationStatusOk = false;

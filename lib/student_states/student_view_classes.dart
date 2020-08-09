@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:flutter_beacon/flutter_beacon.dart';
-import 'package:iattendance/attendance_success.dart';
-import '../file_manager.dart';
+import 'package:iattendance/shared_states/attendance_success.dart';
+import '../tools/file_manager.dart';
 
 class ViewClasses extends StatefulWidget {
   @override

@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../file_manager.dart';
+import '../tools/file_manager.dart';
 import 'lecturer_view_students.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:beacon_broadcast/beacon_broadcast.dart';
