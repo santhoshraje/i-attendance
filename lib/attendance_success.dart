@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'lecturer/lecturer_set_class.dart';
-
 class AttendanceSuccess extends StatelessWidget {
 
   @override
