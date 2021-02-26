@@ -30,7 +30,7 @@ the classroom.
 
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_2.png"></p>
 
-- Download your config files from firebase and add them to the project.</br> (demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I)
+- Download your config files from firebase and add them to this Flutter project.</br> (demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I)
 
 - Update the lines below from lecturer_send_attendance.dart file with your own information. This is to email the attendance report to the recipient.
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_3.png"></p>
