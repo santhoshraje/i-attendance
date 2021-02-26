@@ -26,34 +26,42 @@ the classroom.
   
  ## Getting Started
 
-Step 1:
-Create a firebase account and set up your cloud firestore as follows. 
+- Create a firebase account and set up your cloud firestore as follows. 
 
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_2.png"></p>
 
-Step 2:
-Download your config files from firebase and add them to the project.</br>
-Demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I
+- Download your config files from firebase and add them to the project.</br> (demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I)
 
-Step3:
-Update the lines below from lecturer_send_attendance.dart file with your own information. This is to email the attendance report to the recipient.
+- Update the lines below from lecturer_send_attendance.dart file with your own information. This is to email the attendance report to the recipient.
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_3.png"></p>
 
 
 ### Prerequisites
-
+ - Flutter
+ - Dart
+ - Firebase account
+ - Cloud firestore database
 
 ### Usage
-
+ - Install Flutter
+ - Connect your phone to your computer 
+ - Run this project from Android Studio or VS Code with Flutter plugin installed
 
 ## Deployment
-
+ - Build the application for android and iOS using Flutter and install it to your device.
 
 ## Libraries
-
+ - cupertino_icons: ^0.1.3
+ - beacon_broadcast: ^0.2.1
+ - flutter_beacon: ^0.3.0
+ - cloud_firestore: ^0.13.7
+ - path_provider: ^1.6.11
+ - flutter_blue: ^0.7.2
+ - mailer: ^3.0.4
+ - csv: ^4.0.3
 
 ## License
-
+ - This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Special Thanks
 
