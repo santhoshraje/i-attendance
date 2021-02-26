@@ -21,12 +21,16 @@
 A cross platform, contact-less attendance tracking system designed to help tertiary education institutions go paperless.
 This solution was created to minimise contact between students by removing the need to pass a piece of paper around
 the classroom. 
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550"></p>
 
+<p align="center">
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
+</p>
   
  ## Getting Started
 
-- Create a firebase account and set up your cloud firestore as follows. 
+- Create a firebase account and set up your cloud firestore as follows. Create a document under the "pins" collection named "123456". This is the pin lecturers will use in the app to identify themselves as lecturers. Leave the "beacons" collection empty.
 
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_2.png"></p>
 
