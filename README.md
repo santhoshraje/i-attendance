@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/logo.png"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/logo.png"></p>
 <h1></h1>
 <h4 align="center">A fast, seamless and contactless classroom attendance taking solution.</br>Created to help with the the current COVID-19 pandemic.</h4>
 
@@ -23,22 +23,22 @@ This solution was created to minimise contact between students by removing the n
 the classroom. 
 
 <p align="center">
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_5.png" width="300" height="550">&nbsp;&nbsp;
-<!-- <img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_6.png" width="250" height="550">&nbsp; -->
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_1.png" width="300" height="550">&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_5.png" width="300" height="550">&nbsp;&nbsp;
+<!-- <img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_6.png" width="250" height="550">&nbsp; -->
 </p>
   
  ## Getting Started
 
 - Create a firebase account and set up your cloud firestore as follows. Create a document under the "pins" collection named "123456". This is the pin lecturers will use in the app to identify themselves as lecturers. Leave the "beacons" collection empty.
 
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_2.png"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_2.png"></p>
 
 - Download your config files from firebase and add them to this Flutter project.</br> (demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I)
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_4.png"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_4.png"></p>
 
 - Update the lines below from lecturer_send_attendance.dart file with your own information. This is to email the attendance report to the recipient.
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_3.png"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_3.png"></p>
 
 
 ### Prerequisites
