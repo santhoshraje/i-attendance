@@ -25,7 +25,7 @@ the classroom.
 <p align="center">
 <img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;
 <img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_5.png" width="300" height="550">&nbsp;&nbsp;
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_6.png" width="300" height="550">&nbsp;&nbsp;
+<!-- <img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_6.png" width="250" height="550">&nbsp; -->
 </p>
   
  ## Getting Started
