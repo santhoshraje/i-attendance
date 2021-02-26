@@ -18,7 +18,7 @@
 </p>
 
  ## Overview
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="600"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550"></p>
 A cross platform, contact-less attendance tracking system designed to help tertiary education institutions go paperless.
 This solution was created to minimise contact between students by removing the need to pass a piece of paper around
 the classroom. 
@@ -26,7 +26,17 @@ the classroom.
   
  ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development, testing and deployment purposes.
+Step 1:
+Create a firebase account and set up your cloud firestore as follows. 
+
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_2.png"></p>
+
+Step 2:
+Download your config files from firebase and add them to the project.</br>
+Demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I
+
+Step3:
+
 
 ### Prerequisites
 
