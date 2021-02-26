@@ -1,12 +1,9 @@
-<p align="center"><img src="https://github.com/santhoshraje/kubera/blob/master/logo.png"></p>
+<p align="center"><img src=""></p>
 <h1></h1>
 <h4 align="center">A fast and contactless attendance takings solution</h4>
 
 <p align="center">
-<img src="https://img.shields.io/badge/built%20with-Python3-red.svg" />
-<img src="https://img.shields.io/github/v/release/santhoshraje/kubera" />
-<img src="https://img.shields.io/github/release-date/santhoshraje/kubera" />
-<img src="https://img.shields.io/badge/telegram-%40kubera__bot-blue" />
+<img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance" />
 <img src="https://img.shields.io/github/last-commit/santhoshraje/kubera/master" />
 <img src="https://img.shields.io/badge/license-MIT-orange" />
 </p>
