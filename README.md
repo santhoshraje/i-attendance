@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/logo.png"></p>
 <h1></h1>
-<h4 align="center">A fast and contactless attendance takings solution</h4>
+<h4 align="center">A fast seamless and contactless attendance taking solution</h4>
 
 <p align="center">
 <img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance" />
