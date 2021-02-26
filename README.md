@@ -1,6 +1,6 @@
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/logo.png"></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/logo.png"></p>
 <h1></h1>
-<h4 align="center">A fast, seamless and contactless classroom attendance taking solution. </br>Built for iOS and Android using Flutter</h4>
+<h4 align="center">A fast, seamless and contactless classroom attendance taking solution.</br>Created to help with the the current COVID-19 pandemic.</h4>
 
 <p align="center">
 <img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance" />
@@ -18,10 +18,11 @@
 </p>
 
  ## Overview
-
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="600"></p>
 A cross platform, contact-less attendance tracking system designed to help tertiary education institutions go paperless.
 This solution was created to minimise contact between students by removing the need to pass a piece of paper around
-the classroom.
+the classroom. 
+
   
  ## Getting Started
 
