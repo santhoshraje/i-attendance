@@ -23,9 +23,9 @@ This solution was created to minimise contact between students by removing the n
 the classroom. 
 
 <p align="center">
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550">&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_5.png" width="300" height="550">&nbsp;&nbsp;
+<img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_6.png" width="300" height="550">&nbsp;&nbsp;
 </p>
   
  ## Getting Started
