@@ -18,10 +18,10 @@
 </p>
 
  ## Overview
-<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550"></p>
 A cross platform, contact-less attendance tracking system designed to help tertiary education institutions go paperless.
 This solution was created to minimise contact between students by removing the need to pass a piece of paper around
 the classroom. 
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_1.png" width="300" height="550"></p>
 
   
  ## Getting Started
@@ -36,6 +36,8 @@ Download your config files from firebase and add them to the project.</br>
 Demo: https://www.youtube.com/watch?v=DqJ_KjFzL9I
 
 Step3:
+Update the lines below from lecturer_send_attendance.dart file with your own information. This is to email the attendance report to the recipient.
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/images/ss_3.png"></p>
 
 
 ### Prerequisites
