@@ -36,7 +36,8 @@ class SendAttendance extends StatelessWidget {
                           Icons.email,
                           color: Colors.green,
                           size: 100,
-                          semanticLabel: 'Text to announce in accessibility modes',
+                          semanticLabel:
+                              'Text to announce in accessibility modes',
                         ),
                         Text('Ready to send your attendance to the office?')
                       ],
@@ -46,16 +47,18 @@ class SendAttendance extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(bottom: 20),
                   child: CupertinoButton(
-                      child: Text('Send', style: TextStyle(color: Colors.white)),
-                      onPressed: () async{
-                        // send mail here
+                      child:
+                          Text('Send', style: TextStyle(color: Colors.white)),
+                      onPressed: () async {
+                        // TODO add your email info here
                         String username = '';
                         String password = '';
                         String recipient = '';
 
                         final smtpServer = gmail(username, password);
 
-                        final directory = await getApplicationDocumentsDirectory();
+                        final directory =
+                            await getApplicationDocumentsDirectory();
                         final filePath = directory.path + "/attendance.csv";
                         File file = File(filePath);
 
