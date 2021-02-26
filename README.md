@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/logo.png"></p>
 <h1></h1>
-<h4 align="center">A fast seamless and contactless attendance taking solution</h4>
+<h4 align="center">A fast, seamless and contactless mobile attendance taking solution. Built for iOS and Android using Flutter by Google</h4>
 
 <p align="center">
 <img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance" />
