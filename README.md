@@ -1,4 +1,4 @@
-<p align="center"><img src=""></p>
+<p align="center"><img src="https://github.com/santhoshraje/i-attendance/blob/master/logo.png"></p>
 <h1></h1>
 <h4 align="center">A fast and contactless attendance takings solution</h4>
 
