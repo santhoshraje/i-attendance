@@ -3,7 +3,7 @@
 <h4 align="center">A fast seamless and contactless attendance taking solution</h4>
 
 <p align="center">
-<img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance/master" />
+<img src="https://img.shields.io/github/release-date/santhoshraje/i-attendance/" />
 <img src="https://img.shields.io/github/last-commit/santhoshraje/i-attendance/master" />
 <img src="https://img.shields.io/badge/license-MIT-orange" />
 </p>
