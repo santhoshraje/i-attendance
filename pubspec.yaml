@@ -27,14 +27,14 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
-  beacon_broadcast: ^0.2.1
-  flutter_beacon: ^0.3.0
-  cloud_firestore: ^0.13.7
-  path_provider: ^1.6.11
-  flutter_blue: ^0.7.2
-  mailer: ^3.0.4
-  csv: ^4.0.3
+  cupertino_icons: ^1.0.5
+  beacon_broadcast: ^0.3.1
+  flutter_beacon: ^0.5.1
+  cloud_firestore: ^3.1.18
+  path_provider: ^2.0.11
+  flutter_blue: ^0.8.0
+  mailer: ^5.1.1
+  csv: ^5.0.1
 
 
 dev_dependencies:
