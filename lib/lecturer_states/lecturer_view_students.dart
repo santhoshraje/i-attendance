@@ -24,30 +24,32 @@ class _ViewStudentsState extends State<ViewStudents> {
     QuerySnapshot qs;
     var documentID = '';
     try {
-      qs = await Firestore.instance.collection('beacons').getDocuments();
+      qs = await FirebaseFirestore.instance.collection('beacons').get();
     } catch (e) {
       print(e.toString());
     }
-    for (var i = 0; i < qs.documents.length; i++) {
-      if (qs.documents[i].data['class'] == className) {
-        documentID = qs.documents[i].documentID;
+    for (var i = 0; i < qs.docs.length; i++) {
+      // TODO: logic here could be broken with latest version of firebase
+      if (qs.docs[i].data() == className) {
+        documentID = qs.docs[i].id;
       }
     }
-    Firestore.instance
-        .collection('beacons')
-        .document(documentID)
-        .snapshots()
-        .listen((DocumentSnapshot documentSnapshot) {
-          var tmp = documentSnapshot.data.keys.toList();
-          tmp.remove('id');
-          tmp.remove('class');
-          studentList.clear();
-          tmp.forEach((element) {
-            studentList.add({"Name": element});
-
-          });
-      setState(() {});
-    });
+    // TODO: logic here is broken with latest version of firebase
+    // FirebaseFirestore.instance
+    //     .collection('beacons')
+    //     .doc(documentID)
+    //     .snapshots()
+    //     .listen((DocumentSnapshot documentSnapshot) {
+    //       var tmp = documentSnapshot.data.keys.toList();
+    //       tmp.remove('id');
+    //       tmp.remove('class');
+    //       studentList.clear();
+    //       tmp.forEach((element) {
+    //         studentList.add({"Name": element});
+    //
+    //       });
+    //   setState(() {});
+    // });
   }
 
   @override

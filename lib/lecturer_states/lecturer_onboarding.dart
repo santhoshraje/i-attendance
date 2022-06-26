@@ -78,9 +78,9 @@ class LecturerOnboarding extends StatelessWidget {
                           );
                         }
                         else{
-                          Firestore.instance
+                          FirebaseFirestore.instance
                               .collection('pins')
-                              .document(myController.text)
+                              .doc(myController.text)
                               .get()
                               .then((DocumentSnapshot ds) async {
                             if (ds.exists){

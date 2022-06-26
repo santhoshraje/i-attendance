@@ -23,7 +23,6 @@ class _SetClassState extends State<SetClass> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _id = random.nextInt(65534);
     super.initState();
   }
@@ -99,8 +98,8 @@ class _SetClassState extends State<SetClass> {
                           );
 
                           // store class name and beacon id
-                          Firestore.instance.collection('beacons').document()
-                              .setData({ 'id': _id, 'class': myController.text });
+                          FirebaseFirestore.instance.collection('beacons').doc()
+                              .set({ 'id': _id, 'class': myController.text });
                         } else {
                           showDialog(
                             context: context,
