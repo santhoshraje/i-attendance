@@ -36,16 +36,17 @@ class _ViewClassesState extends State<ViewClasses> {
         .bluetoothStateChanged()
         .listen((BluetoothState state) async {
       streamController.add(state);
-
-      switch (state) {
-        case BluetoothState.stateOn:
-          initScanBeacon();
-          break;
-        case BluetoothState.stateOff:
-          await pauseScanBeacon();
-          await checkAllRequirements();
-          break;
-      }
+      // TODO this switch does not work anymore
+      // switch (state)
+      // {
+      //   case BluetoothState.stateOn:
+      //     initScanBeacon();
+      //     break;
+      //   case BluetoothState.stateOff:
+      //     await pauseScanBeacon();
+      //     await checkAllRequirements();
+      //     break;
+      // }
     });
   }
 
@@ -106,17 +107,19 @@ class _ViewClassesState extends State<ViewClasses> {
               // get class name from firebase
               QuerySnapshot qs;
               try {
-                qs = await Firestore.instance
+                qs = await FirebaseFirestore.instance
                     .collection('beacons')
-                    .getDocuments();
+                    .get();
               } catch (e) {
                 print(e.toString());
               }
-              for (var i = 0; i < qs.documents.length; i++) {
-                if (qs.documents[i].data['id'] == minor) {
-                  documentID = qs.documents[i].documentID;
+              for (var i = 0; i < qs.docs.length; i++) {
+                // TODO: logic here could be broken with latest version of firebase
+                if (qs.docs[i].data() == minor) {
+                  documentID = qs.docs[i].id;
                   if (added.contains(minor)) continue;
-                  classes.add({"Name": qs.documents[i].data['class']});
+                  // TODO: logic here could be broken with latest version of firebase
+                  classes.add({"Name": qs.docs[i].data()});
                   added.add(minor);
                   setState(() {});
                 }
@@ -232,17 +235,17 @@ class _ViewClassesState extends State<ViewClasses> {
                                                   child: new Text("Confirm"),
                                                   onPressed: () async {
                                                     CollectionReference
-                                                        classes = Firestore
+                                                        classes = FirebaseFirestore
                                                             .instance
                                                             .collection(
                                                                 'beacons');
                                                     final document = classes
-                                                        .document(documentID);
+                                                        .doc(documentID);
                                                     String name =
                                                         await fileManager
                                                             .readFromDevice(
                                                                 'user_name.txt');
-                                                    document.updateData(
+                                                    document.update(
                                                         {name: name});
                                                     Navigator.push(
                                                       context,
