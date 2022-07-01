@@ -22,6 +22,8 @@ A cross platform, contact-less attendance tracking system designed to help terti
 This solution was created to minimise contact between students by removing the need to pass a piece of paper around
 the classroom. 
 
+This project is considered complete and is in maintenance mode. This means that we will address critical bugs and security issues but will not add any new features.
+
 <p align="center">
 <img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_1.png" width="300" height="550">&nbsp;&nbsp;
 <img src="https://github.com/santhoshraje/i-attendance/blob/master/screenshots/ss_5.png" width="300" height="550">&nbsp;&nbsp;
